@@ -10,7 +10,7 @@
 
 本说明适用于 Evan 手动发起的两类只读功能：
 
-1. **API 连通性诊断。** 调用 YouTube Data API v3 的 `channels.list`，以公开 handle `@mattpocockuk` 请求 `part=id`、`fields=items(id)`。单次诊断最多发送 1 个 API 请求，不自动重试；成功响应中的频道 ID 只在进程内存中检查后丢弃，不展示或保存。
+1. **API 连通性诊断。** 调用 YouTube Data API v3 的 `channels.list`，以公开 handle `@mattpocockuk` 请求 `part=id`、`fields=items(id)`。单次诊断最多发送 1 个 API 请求，不自动重试；成功响应中的完整响应只在进程内存中短暂处理后丢弃，不读取或展示具体频道 ID。
 2. **标题预览。** 检查 Matt Pocock（@mattpocockuk）频道的公开上传视频，并在 Evan 本机终端显示原始标题、发布时间、YouTube 链接、当次列表编号和来源标签。关闭预览屏幕时，程序清屏并退出；预览不会写入日志或本地文件。
 
 API 诊断和实时预览都必须由 Evan 在自己的 macOS Terminal 中直接运行，并在使用 key 前输入 `LOCAL TERMINAL ONLY`，确认请求及任何本机显示不会经 Codex task terminal 捕获。若文件缺失而终端无法隐藏 API key 输入，程序会中止而不退回明文输入。不要在 Codex 管理的终端、PTY 或云端任务中运行：程序能检查是否有交互终端，但无法判断该终端是否由任务编排器捕获。
